@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button onclick="getLink()">getLink</button>
+    <button onclick="printLink(1)" id="print">link1</button>
+    <button onclick="printLink(2)" id="print">link2</button>
+    <button onclick="printLink(3)" id="print">link3</button>
+    <div id="ans"></div>
+
+    <script>
+        let saveData, inputLink;
+        let link1, link2, link3;
+        function getLink() {
+            inputLink = prompt("Enter your link: ");
+            if (inputLink.length == 0) {
+                return;
+            } else {
+                fetch('https://api.shrtco.de/v2/shorten?url=' + inputLink)
+                    .then(response => response.json())
+                    .then(data => {
+                        saveData = data.result;
+                        console.log(saveData);
+                        link1 = saveData.full_short_link;
+                        link2 = saveData.full_short_link2;
+                        link3 = saveData.full_short_link3;
+                    });
+            }
+        }
+        function printLink(linkNumber) {
+            if (linkNumber == 1) {
+                console.log(link1);
+                const printAns = document.getElementById("ans");
+                const tmpLink1 = document.createElement("a");
+                tmpLink1.setAttribute("href", link1);
+                tmpLink1.innerText = "Shorten link 1: " + link1;
+                tmpLink1.setAttribute("style", "display : block");
+                tmpLink1.setAttribute("target", "_blank");
+                printAns.appendChild(tmpLink1);
+            } else if (linkNumber == 2) {
+                console.log(link2);
+                const printAns = document.getElementById("ans");
+                const tmpLink2 = document.createElement("a");
+                tmpLink2.setAttribute("href", link2);
+                tmpLink2.innerText = "Shorten link 2: " + link2;
+                tmpLink2.setAttribute("style", "display : block");
+                tmpLink2.setAttribute("target", "_blank");
+                printAns.appendChild(tmpLink2);
+            } else if (linkNumber == 3) {
+                console.log(link3);
+                const printAns = document.getElementById("ans");
+                const tmpLink3 = document.createElement("a");
+                tmpLink3.setAttribute("href", link3);
+                tmpLink3.innerText = "Shorten link: 3" + link3;
+                tmpLink3.setAttribute("style", "display : block");
+                tmpLink3.setAttribute("target", "_blank");
+                printAns.appendChild(tmpLink3);
+            }
+        }
+
+
+    </script>
+
+</body>
+
+</html>
