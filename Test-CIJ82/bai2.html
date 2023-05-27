@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1 id="ans"></h1>
+    <script>
+        let arr = [];
+        let ansFirst = 0, ansSecond = 0;
+        let n = prompt("Enter number of elements:");
+        for (let i = 0; i < n; i++) {
+            arr[i] = prompt("Enter element " + (i + 1) + ":");
+            if (i % 2 == 0){
+                ansFirst += Number(arr[i]);
+            }else ansSecond += Number(arr[i]);
+        }
+        console.log(arr);
+
+        console.log(ans);
+        const tmp = document.getElementById("ans");
+        const printAns = document.createElement("h3");
+        printAns.innerText = "Your array: " + arr.toString() + "\nAnswer: " + ansFirst + " And " + ansSecond;
+        tmp.appendChild(printAns);
+
+    </script>
+</body>
+
+</html>
